@@ -11,43 +11,50 @@ public class Coletor {
 
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-		BaseDeDados dados;
-
-		System.out.print("digite o numero da conta:");
+		
+	    double depositonovo = 0;  int comando = 0;
+		
+		System.out.print("digite o numero da conta:"); // tira 
 		int conta = sc.nextInt();
 		System.out.printf("digite o  seu nome:");
 		sc.nextLine();
 		String nome = sc.nextLine();
-
-		System.out.print("ira realisar algum deposito ? se sim digite 's' se não digite 'n' :");
-		char vari = sc.next().charAt(0);
-
-		if (vari == ('s')) {
-			System.out.print("digite o valor que sera depositado:");
-			double depositonovo = sc.nextDouble();
-			dados = new BaseDeDados(conta, nome, depositonovo);
-		} else {
-			dados = new BaseDeDados(conta, nome);
+		
+		BaseDeDados dados = new BaseDeDados(conta, nome, depositonovo);
+		
+		while(comando != 4) {
+			System.out.println("--------------------------------------BENK-MASTE-PLAST------------------------------------------------");
+			
+			System.out.println("deposito: digite ............... (1)");
+			System.out.println("saque: digite .................. (2)");
+			System.out.println("estrato: digite ................ (3)");
+			System.out.println("encerra: digite ................ (4)");
+			
+			System.out.println("------------------------------------------------------------------------------------------------------");
+			System.out.print("opssão: ");
+			comando = sc.nextInt();
+		
+		switch (comando) { 
+		case 1: // deposito
+			System.out.println("deposito: ");
+			depositonovo = sc.nextDouble();
+			dados.deposito(depositonovo);
+			break;
+		case 2: // saque
+			System.out.println("saque: ");
+			depositonovo = sc.nextDouble();
+			dados.saque(depositonovo);
+			break;
+		case 3: // estrato
+			System.out.println(dados);
+			System.out.println();
+			break;
+			default:
+			System.out.println();
+			break;
+			}
 		}
-
-		System.out.println(dados);
-
-		System.out.println("");
-		System.out.println("insira o valor que sera depositado");
-		double depositonovo = sc.nextDouble();
-		dados.deposito(depositonovo);
-
-		System.out.println(dados);
-
-		System.out.println("");
-		System.out.println("informe o falor que sera sacado:");
-		depositonovo = sc.nextDouble();
-		dados.saque(depositonovo);
-
-		System.out.println(dados);
-
 		sc.close();
-
 	}
 
 }

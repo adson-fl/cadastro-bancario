@@ -20,6 +20,9 @@ public class BaseDeDados {
 		this.nome = nome;
 		deposito(depositonovo);
 	}
+	public BaseDeDados(double depositonovo) {
+		deposito(depositonovo);
+	}
 	
 
 	public int getConta() {
@@ -38,17 +41,22 @@ public class BaseDeDados {
 		return valor;
 	}
 
-	public void deposito(double valor) {
+	public void deposito(double valor) {  // deixa
 		this.valor += valor;
 	}
 
-	public void saque(double valor) {
+	public void saque(double valor) {  // deixa 
+		if(valor > 0) {
 		this.valor -= valor + 5.00;
+		}
+		else {
+			System.out.println("saldo insuficiente");
+		}
 	}
 	
 	public String toString() {
-		return nome
-				+ " sua conta é "
+		return "proprietario:" + nome
+				+" conta: "
 				+ conta
 				+ " seu saldo atual é de: "
 				+ String.format("%.2f", valor) + " R$";
